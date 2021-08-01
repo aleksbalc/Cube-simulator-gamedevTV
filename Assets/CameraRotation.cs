@@ -10,7 +10,6 @@ public class CameraRotation : MonoBehaviour
    public float prevAngle;
    private bool camJumped = false;
    private bool shouldRotate = false;
-    public Transform player;
     
     void Start()
     {
@@ -20,16 +19,12 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.rotation = player.rotation;
-        
-        //float beginningRotation = transform.eulerAngles.y;
         if(Input.GetKey("e") && !camJumped) {
             prevAngle = transform.eulerAngles.y;
             camJumped= true;
             Debug.Log("jump");
             shouldRotate = true;
         }
-        //Debug.Log(transform.eulerAngles.y);
         if (shouldRotate && transform.eulerAngles.y % 360 - prevAngle < 90 && transform.eulerAngles.y % 360 - prevAngle >= 0)
         {
             transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
